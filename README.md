@@ -1,24 +1,47 @@
-# Trabajo de Consulta: Implementación Funcional del Método de Simpson 1/3
+# Trabajo de Consulta: Programación Funcional y Reactiva
 
-Este proyecto implementa una solución para la integración numérica utilizando el **Método de Simpson 1/3**. [cite_start]El desarrollo se ha realizado estrictamente bajo el paradigma de **Programación Funcional** utilizando **Scala 3**, enfocándose en el uso de Funciones de Orden Superior (HOFs), inmutabilidad y transformación de colecciones[cite: 1, 2, 4, 6].
+**Tema:** Funciones de Orden Superior y Método de Simpson 1/3  
+**Lenguaje:** Scala 3
 
-A continuación, se describe la arquitectura de la solución, detallando la lógica de cada función y componente implementado.
+## 1. Descripción del Proyecto
+Este repositorio contiene la resolución del trabajo de consulta sobre **Funciones de Orden Superior (Higher Order Functions)**. El objetivo principal es implementar el método de integración numérica de Simpson 1/3 aplicando estrictamente el paradigma de Programación Funcional, evitando el uso de bucles imperativos y variables mutables.
+
+### Objetivos
+1.  **Aplicar Funciones de Orden Superior:** Pasar funciones matemáticas como parámetros a otras funciones.
+2.  **Modelado de Datos:** Utilizar `case classes` para estructurar la información.
+3.  **Transformación de Datos:** Utilizar operaciones funcionales como `.map` para procesar colecciones.
 
 ---
 
-## 1. Modelado de Datos: `case class EjercicioIntegral`
+## 2. Marco Teórico: Método de Simpson 1/3
 
-Para manejar los 7 ejercicios propuestos de manera ordenada y evitar el uso de variables sueltas, se optó por modelar la estructura de un problema de integración mediante una `case class`.
+La regla de Simpson 1/3 es un método de integración numérica que permite aproximar el área bajo una curva. La fórmula utilizada es:
 
-### Lógica y Propósito
-En Scala, una `case class` es ideal para modelar datos inmutables. Nos permite agrupar todos los parámetros necesarios para definir una integral definida específica en un solo objeto.
+$$\int_{a}^{b}f(x)dx \cong (b-a) \frac{f(a) + 4f(\bar{x}) + f(b)}{6}$$
 
-### Definición
+Donde los componentes son:
+* $a$: Límite inferior de la integral.
+* $b$: Límite superior de la integral.
+* $\bar{x}$: Punto medio del intervalo, calculado como $\bar{x} = \frac{a+b}{2}$.
+* $f(x)$: La función a integrar evaluada en distintos puntos.
+
+Adicionalmente, se calcula el **Error Absoluto** respecto al valor esperado:
+$$Error = |ValorEsperado - ValorObtenido|$$
+
+---
+
+## 3. Arquitectura y Lógica de Implementación
+
+La solución se ha diseñado bajo una arquitectura puramente funcional. A continuación, se detalla la lógica de cada componente del código:
+
+### 3.1. Modelado de Datos (`case class`)
+En lugar de manejar variables sueltas para cada ejercicio, se encapsuló la definición de cada integral en una estructura inmutable.
+
 ```scala
 case class EjercicioIntegral(
-    id: Int,                   // Identificador del ejercicio (ej. 1, 2, 3...)
-    funcion: Double => Double, // La función matemática 'f(x)' a integrar
-    a: Double,                 // Límite inferior de integración
-    b: Double,                 // Límite superior de integración
-    valorEsperado: Double      // El resultado matemático real para comparar
+    id: Int, 
+    funcion: Double => Double, 
+    a: Double, 
+    b: Double, 
+    valorEsperado: Double
 )
