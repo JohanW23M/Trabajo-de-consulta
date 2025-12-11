@@ -46,9 +46,6 @@ case class EjercicioIntegral(
     b: Double, 
     valorEsperado: Double
 )
-Entendido. Aquí tienes todo el contenido que me pediste, desde la explicación lógica del código hasta el punto 5, formateado correctamente en **Markdown** para que lo copies y pegues directamente.
-
------
 
 **Lógica:** La `case class` nos permite crear objetos que contienen no solo los datos numéricos (`a`, `b`), sino también el comportamiento (la `funcion`).
 
