@@ -8,7 +8,7 @@ case class EjercicioIntegral(
 
 def integracion(f: Double => Double, a: Double, b: Double): Double =
   val x_medio = (a + b) / 2
-  // Fórmula de Simpson 1/3 [cite: 10]
+  // Fórmula de Simpson 1/3 
   (b - a) * ((f(a) + 4 * f(x_medio) + f(b)) / 6)
 
 def calcularError(esperado: Double, obtenido: Double): Double =
@@ -31,7 +31,7 @@ def calcularError(esperado: Double, obtenido: Double): Double =
     EjercicioIntegral(7, x => 1 / (1 + Math.pow(x, 2)), 0, 1, 0.785398)
   )
 
-  println("--- Resultados usando Programación Funcional (Map & HOF) ---")
+  println("--- Resultados usando Programación Funcional ---")
 
   val resultados = ejercicios.map { ej =>
     val valorObtenido = integracion(ej.funcion, ej.a, ej.b)
