@@ -31,7 +31,7 @@ def calcularError(esperado: Double, obtenido: Double): Double =
     EjercicioIntegral(7, x => 1 / (1 + Math.pow(x, 2)), 0, 1, 0.785398)
   )
 
-  println("--- Resultados usando Programación Funcional ---")
+  println("--- Resultados: ---")
 
   val resultados = ejercicios.map { ej =>
     val valorObtenido = integracion(ej.funcion, ej.a, ej.b)
